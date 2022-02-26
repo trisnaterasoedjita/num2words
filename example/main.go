@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/vinbyte/num2words"
+	"github.com/trisnaterasoedjita/num2words"
 )
 
 func main() {
