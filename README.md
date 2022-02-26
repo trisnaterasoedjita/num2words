@@ -6,7 +6,7 @@ Golang package to convert number into words. For example : `148` become `one hun
 
 ## Install
 
-Run `go get -u github.com/vinbyte/num2words`
+Run `go get -u github.com/trisnaterasoedjita/num2words`
 
 ## Usage
 
