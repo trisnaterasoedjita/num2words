@@ -1,0 +1,25 @@
+version: 2.1
+orbs:
+  coveralls: coveralls/coveralls@1.0.6
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.15
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - go-mod-v4-{{ checksum "go.sum" }}
+      - run:
+          name: Install Dependencies
+          command: go get ./... && go get github.com/mattn/goveralls
+      - save_cache:
+          key: go-mod-v4-{{ checksum "go.sum" }}
+          paths:
+            - "/go/pkg/mod"
+      - run:
+          name: Run tests
+          command: go test -v -cover -coverprofile=coverage.out
+      - run:
+          name: Publish coverage
+          command: goveralls -coverprofile=coverage.out -service=circle-ci -repotoken=$COVERALLS_REPO_TOKEN
